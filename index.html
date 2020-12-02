@@ -3,10 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=https://streamingturtles.github.io/4-codeQuizHW_PAC/" />
+    <!-- <meta http-equiv="refresh" content="0; url=https://streamingturtles.github.io/4-codeQuizHW_PAC/" /> -->
     <title>4-codeQuizHW_PAC</title>
+    
+    <!-- Not using jQuery, will use vanilla JS instead  -->
+    <!-- <script src="jquery-3.5.1.min.js"></script> -->
+
+    <!-- css style sheet -->
+    <link rel="stylesheet" href="style.css">
+
+
 </head>
 <body>
-    <h1>Code Quiz Game</h1>
+    <h1 style="text-align: center">Code Quiz Game</h1>
+    
+    <div style="text-align: center">
+        <!-- <button onclick="quizTimer()">Click to Start Quiz</button>  -->
+        <button onclick="quizTimer()">Click to Start Quiz</button>
+        <br><br>
+        <button>Click to View High Scores</button>
+        <br><br>
+        <hr>
+    </div>
+
+<div id="barFullLength">
+  <div id="barProgress"></div>
+</div>
+<div>
+    <p id="timer"></p>
+</div>
+
+<br>
+
+
+
+<script>
+function quizTimer() {
+  var outterDiv = document.getElementById("barProgress");   
+  var width = 0;
+  var counter = 101;
+  var interval = setInterval(beginCountDown, 1000);
+  function beginCountDown() {
+    counter = counter-1;
+    // var dte = new Date();
+    // var time = dte.toLocaleTimeString();
+    document.getElementById("timer").innerHTML = counter; 
+    if (width == 100) {
+      clearInterval(interval);
+    } else {
+      width++; 
+      outterDiv.style.width = width + '%'; 
+    }
+  }
+}
+</script>
+
+
+
+
+
+
+
+
 </body>
 </html>

@@ -1,0 +1,31 @@
+
+/* length of progress timer - fills its div 100% */
+#barFullLength {
+    height:25px;
+    width: 100%;
+    position: relative;
+    background-color: lightgray; 
+    border-style: solid;
+    border-color: black;
+ }
+
+
+/* incrementally fills the progress timer - based on clock */
+#barProgress {
+    height: 25px;
+    width: 0px;
+    position: absolute;
+    background-color: purple;
+    
+}
+
+#timer {
+    float: right;
+}
+
+
+
+
+
+
+
