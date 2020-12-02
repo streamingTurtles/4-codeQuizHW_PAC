@@ -18,11 +18,11 @@
     <h1 style="text-align: center">Code Quiz Game</h1>
     
     <div style="text-align: center">
-        <!-- <button onclick="quizTimer()">Click to Start Quiz</button>  -->
-        <button onclick="quizTimer()">Click to Start Quiz</button>
+        <button onclick="start()">Click to Start Quiz</button> 
         <br><br>
         <button>Click to View High Scores</button>
         <br><br>
+        <button onclick="stopp()">Stop time</button>
         <hr>
     </div>
 
@@ -32,30 +32,65 @@
 <div>
     <p id="timer"></p>
 </div>
-
 <br>
+<div id='count'>100</div>
+
+
 
 
 
 <script>
-function quizTimer() {
-  var outterDiv = document.getElementById("barProgress");   
-  var width = 0;
-  var counter = 101;
-  var interval = setInterval(beginCountDown, 1000);
-  function beginCountDown() {
-    counter = counter-1;
-    // var dte = new Date();
-    // var time = dte.toLocaleTimeString();
-    document.getElementById("timer").innerHTML = counter; 
-    if (width == 100) {
-      clearInterval(interval);
+// Had to reWrite this - the clearInterval(interval) - out of scope     
+// function quizTimer() {
+//   var outterDiv = document.getElementById("barProgress");   
+//   var width = 0;
+//   var counter = 101;
+//   var interval = setInterval(beginCountDown, 1000);
+//   function beginCountDown() {
+      
+//     counter = counter-1;
+//     console.log("progress bar is: " + width + " counter is: " + counter + "Interval is: " + interval);
+//     document.getElementById("timer").innerHTML = counter + " secconds remaining"; 
+//     if (width == 100) {
+//       clearInterval(interval);
+//     } else {
+//       width++; 
+//       outterDiv.style.width = width + '%';     
+//     } 
+//   }
+// }
+// function stop(interval){
+//     clearInterval(interval);
+// }
+
+
+
+var count;
+var outterDiv = document.getElementById("barProgress");   
+var width = 0;
+var pbcounter = 100;
+
+function start(){
+  count = setInterval(timer,100)  
+}
+function timer(){
+  pbcounter = pbcounter-1;
+  document.getElementById('count').innerText--;    
+  document.getElementById("timer").innerHTML = pbcounter + " seconds remaining";
+  console.log("progress bar is: " + width + " pbcounter is: " + pbcounter + "count is: " + count);
+  if (width == 99) {
+      console.log("width is at: " + width + '%');
+      outterDiv.style.width = 100 + '%'; // needed to "fudge" graphically to complete the progress bar
+      clearInterval(count);
     } else {
       width++; 
-      outterDiv.style.width = width + '%'; 
-    }
-  }
+      outterDiv.style.width = width + '%';
+    } 
 }
+function stopp(){
+  clearInterval(count)   
+}
+
 </script>
 
 
