@@ -14,7 +14,15 @@
 
 
 </head>
-<body>
+<body onLoad="Javascript:checkRefresh()">
+
+    <form name="refreshForm">
+        <input type="hidden" name="visited" value="" />
+        </form>
+
+
+
+
     <h1 style="text-align: center">Code Quiz Game</h1>
     
     <div style="text-align: center">
@@ -35,7 +43,10 @@
 <br>
 <div id='count'>"You have 100 seconds to take this CODE QUIZ"</div>
 <hr>
-<div id="quizQuestions">Questions Begin</div>
+
+<div id="quizQuestions">---</div>
+<div id="answersList">---</div>
+
 <div id="submitYourAnswers">Submit your Quiz</div>
 <div id="yourScore">Your Score</div>
 
@@ -81,7 +92,7 @@ function stopp(){
 
 
 <script src="gameLogic.js"></script>
-<script>src="data.js"</script>
+<!-- <script>src="data.js"</script> -->
 
 </body>
 </html>

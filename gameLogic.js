@@ -2,33 +2,34 @@
 // array to hold key, values for questions.
 var theQuestions = [
     {   
-        question: 1,
-        question1: "Is Javascript and Java programing related or similiar programming languages?",
-            possibleAnswers1: [
+        id: 1,
+        question: "Is Javascript and Java programing related or similiar programming languages?",
+        correctAnswer1: "b",
+            possibleAnswer: [
                 "a: Yes",
                 "b: No",
                 "c: Sometimes"
-            ],            
-            correctAnswer1: "b"
+            ]            
     },
     {
-        question: 2,
-        question2: "What does a CLOSURE do in Javascript?", 
-            possibleAnswer2: [
+        id: 2,
+        question: "What does a CLOSURE do in Javascript?", 
+        correctAnswer2: "c",
+            possibleAnswer: [
                 "a: A Closure gives you access to the outer function's scope from an inner function",
                 "b: A Closure allows you to have private variables",
                 "c: Both b & C"
-            ],
-            correctAnswer2: "c"
+            ]
     },
     {
-        question3: "What is an IIFE in Javascript?", 
-            possibleAnswer2: [
+        id: 3,
+        question: "What is an IIFE in Javascript?", 
+        correctAnswer3: "a",
+            possibleAnswer: [
                 "a: Immediately Invoked Function Expression",
                 "b: Instantiated Integer Float Expression",
                 "c: International Integrated Field Electronics"
-            ],
-            correctAnswer3: "a"
+            ]
     }
 ];
 
@@ -37,7 +38,8 @@ var theQuestions = [
 
 
 // create the variables to store each elements reference
-var questions = document.getElementById('quizQuestions');
+
+// var questions = document.getElementById('quizQuestions');
 var submittal = document.getElementById('submitYourAnswers');
 var results   = document.getElementById('yourScore');
 
@@ -46,17 +48,16 @@ var results   = document.getElementById('yourScore');
 
 function theQuiz(){
     var count =0;
-    
-    questions = 'Question-1: ' + theQuestions[0];
-    console.log(questions);
-    questions = 'Question-1: ' + theQuestions[0];
-    console.log(questions);
-    console.log(questions);
-    console.log(questions);
-    console.log('Question-1: ' + theQuestions[2]);
-    questions.textContent = theQuestions[0];
-    // questions.appendChild(theQuestions[0]);
-    document.getElementById('quizQuestions').innerHTML = theQuestions[0];
+    var index=0;  // temp testing
+    var quizQuestions = document.getElementById("quizQuestions");
+    //creating span and div tag for the questions and answer options using the array index 
+    var questionTag = '<span>'+ theQuestions[index].id + ". " + theQuestions[index].question +'</span>';
+    var answersOptionsTag = '<div class="option"><span>'+ theQuestions[index].possibleAnswer[0] +'</span></div>'
+                          + '<div class="option"><span>'+ theQuestions[index].possibleAnswer[1] +'</span></div>'
+                          + '<div class="option"><span>'+ theQuestions[index].possibleAnswer[2] +'</span></div>'
+    quizQuestions.innerHTML = questionTag; //adding a new span tag inside the questionTag
+    answersList.innerHTML = answersOptionsTag; //adding a new div tag inside answersOptionsTag    
+
 
 }
 
@@ -74,3 +75,28 @@ theQuiz();
 // show the results when the timer ends or the user submits
 yourResults();
 
+
+
+
+
+
+function checkRefresh()
+{
+	if( document.refreshForm.visited.value == "" )
+	{
+		// This is a fresh page load
+		document.refreshForm.visited.value = "1";		
+        
+        // fresh page loads, clear things
+        quizQuestions.innerHTML = ''; // reset to empty string
+        answersList.innerHTML = ''; // reset to empty string  
+	}
+	else
+	{
+		// This is a page refresh
+        // add necessary code for a user refresh 
+        quizQuestions.innerHTML = ''; // reset to empty string
+        answersList.innerHTML = ''; // reset to empty string  
+        
+	}
+}
