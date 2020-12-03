@@ -52,9 +52,9 @@ function theQuiz(){
     var quizQuestions = document.getElementById("quizQuestions");
     //creating span and div tag for the questions and answer options using the array index 
     var questionTag = '<span>'+ theQuestions[index].id + ". " + theQuestions[index].question +'</span>';
-    var answersOptionsTag = '<div class="option"><span>'+ theQuestions[index].possibleAnswer[0] +'</span></div>'
-                          + '<div class="option"><span>'+ theQuestions[index].possibleAnswer[1] +'</span></div>'
-                          + '<div class="option"><span>'+ theQuestions[index].possibleAnswer[2] +'</span></div>'
+    var answersOptionsTag = '<div class="option"><button>'+ theQuestions[index].possibleAnswer[0] +'</button></div>'
+                          + '<div class="option"><button>'+ theQuestions[index].possibleAnswer[1] +'</button></div>'
+                          + '<div class="option"><button>'+ theQuestions[index].possibleAnswer[2] +'</button></div>'
     quizQuestions.innerHTML = questionTag; //adding a new span tag inside the questionTag
     answersList.innerHTML = answersOptionsTag; //adding a new div tag inside answersOptionsTag    
 
@@ -79,7 +79,7 @@ yourResults();
 
 
 
-
+// to handle if the browser is refreshed at any time - need to reSet all counts and settings
 function checkRefresh()
 {
 	if( document.refreshForm.visited.value == "" )
