@@ -19,7 +19,7 @@
     
 }
 
-#timer {
+#timer, #count{
     /* float: right; */
     text-align: center;
 }
