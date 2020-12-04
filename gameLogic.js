@@ -58,12 +58,11 @@ function theQuiz(){
     quizQuestions.innerHTML = questionTag; //adding a new span tag inside the questionTag
     answersList.innerHTML = answersOptionsTag; //adding a new div tag inside answersOptionsTag    
 
-
 }
 
 
 
-
+// function that will generate a form element to enter the users information & calculated score
 function yourResults (){
 }
 

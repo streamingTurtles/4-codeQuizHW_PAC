@@ -29,8 +29,8 @@
         <button onclick="start()">Click to Start Quiz</button> 
         <br><br>
         <button>Click to View High Scores</button>
-        <br><br>
-        <button onclick="stopp()">Stop time</button>
+        <!-- <br><br>
+        <button onclick="stopp()">Stop time</button> -->
         <hr>
     </div>
 
@@ -60,7 +60,7 @@ var pbcounter = 100;
 function start(){
   theQuiz();
 
-  count = setInterval(timer,100)  
+  count = setInterval(timer,1000)  
 }
 function timer(){
   pbcounter = pbcounter-1; 
@@ -79,7 +79,10 @@ function timer(){
       outterDiv.style.width = width + '%'; // increment the width % of the div #barProress
     } 
 }
-function stopp(){  // clears the current setInterval timer that's running
+
+// function used during testing the timer portion of the app
+// clears the current setInterval timer that's running
+function stopp(){  
   clearInterval(count)   
 }
 
