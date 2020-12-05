@@ -26,9 +26,10 @@
     <h1 style="text-align: center">Code Quiz Game</h1>
     
     <div style="text-align: center">
-        <button onclick="start()">Click to Start Quiz</button> 
+        <!-- button to start the quiz and immediatly hide the button so user doesn't restart -->
+        <button onclick= "start(); this.style.visibility= 'hidden';">Click to Start Quiz</button> 
         <br><br>
-        <button>Click to View High Scores</button>
+        <!-- <button>Click to View High Scores</button> -->
         <br><br>
         <!-- testing code for when building the timer -->
         <!-- <button onclick="stopp()">Stop time</button> -->
@@ -52,7 +53,7 @@
 <div id="yourAnswer">---</div>
 <!-- <div id="submitYourAnswers">Submit your Quiz</div> -->
 <hr>
-<div id="yourScore">Your Score</div>
+<div id="yourScore:">Your Score</div>
 
 <!-- test the questions / answers rendering into HTML -->
 <!-- <button onclick="theQuiz()">click for next question</button> -->

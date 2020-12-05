@@ -51,7 +51,7 @@ function theQuiz(index){
         console.log("index value set back to the beginning - to: ", index);
         stopp();
         pbcounter = 0;  // push to 0 seconds
-        document.getElementById('count').innerText = "You have finished the quiz";
+        document.getElementById('count').innerText = "You have finished the quiz, refresh your browser to take the quiz again";
         document.getElementById("timer").innerHTML = pbcounter + " seconds remaining"; 
         outterDiv.style.width = 100 + '%'; // make barProgress complete - representing end of quiz
         // clearInterval(count)
