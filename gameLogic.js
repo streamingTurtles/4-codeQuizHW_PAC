@@ -46,9 +46,15 @@ function theQuiz(index){
     var yayOrNay = "";  // the variable the stores an incorrect or correct answer for each of the questions
     var quizQuestions = document.getElementById("quizQuestions");
     // condition to restore back to start after answered the qustions or end of quiz case
-    if (index > 2) {
-        index = 0;  // represents where you are in the object array - mirrors the id, offset by 1 since array index starts at 0
-        console.log("current index value from theQuiz function return is: ", index);
+    if (index > 2) { // when you finished answering the question do these things
+        index = 0;  // set back where you are in the object array to the beginning
+        console.log("index value set back to the beginning - to: ", index);
+        stopp();
+        pbcounter = 0;  // push to 0 seconds
+        document.getElementById('count').innerText = "You have finished the quiz";
+        document.getElementById("timer").innerHTML = pbcounter + " seconds remaining"; 
+        outterDiv.style.width = 100 + '%'; // make barProgress complete - representing end of quiz
+        // clearInterval(count)
         return // exit the function - end of quiz
     }
     //creating span and div tag for the questions and answer options using the array index    
