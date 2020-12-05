@@ -88,10 +88,11 @@ function theQuiz(index){
             
             // for Questions 1. 2. & 3. - when selecting multiple choice letter a:
             if (theQuestions[index].possibleAnswer[0].charAt(0) === theQuestions[index].correctAnswer.charAt(0)) {console.log("CORRECT"); yayOrNay="CORRECT" }
-                else { console.log("INCORRECT ANSWER"); yayOrNay="WRONG ANSWER, 10 sec off the clock"; }
- 
+                else { console.log("INCORRECT ANSWER"); yayOrNay="WRONG ANSWER, 10 sec off the clock"; 
+                       pbcounter = pbcounter -10;  // deduct 10sec if incorrect answer :(
+                       width = width+10;  
 
-
+                }
 
             count = index+1;
             youSelected.innerHTML = " you selected from question " + count + " the ANSWER: " + theQuestions[index].possibleAnswer[0] + "  - this is the: " + yayOrNay
@@ -114,9 +115,10 @@ function theQuiz(index){
 
             // for Questions 1. 2. & 3. - when selecting multiple choice letter b:
             if (theQuestions[index].possibleAnswer[1].charAt(0) === theQuestions[index].correctAnswer.charAt(0)) {console.log("CORRECT"); yayOrNay="CORRECT" }
-                else { console.log("INCORRECT ANSWER"); yayOrNay="WRONG ANSWER, 10 sec off the clock"; }
-
-
+                else { console.log("INCORRECT ANSWER"); yayOrNay="WRONG ANSWER, 10 sec off the clock"; 
+                       pbcounter = pbcounter -10;  // deduct 10sec if incorrect answer :(
+                       width = width+10;
+                }
       
             count = index+1;
             youSelected.innerHTML = " you selected from question " + count + " the ANSWER: " + theQuestions[index].possibleAnswer[1] + "  - this is the: " + yayOrNay
@@ -137,11 +139,10 @@ function theQuiz(index){
 
             // for Questions 1. 2. & 3. - when selecting multiple choice letter c:
             if (theQuestions[index].possibleAnswer[2].charAt(0) === theQuestions[index].correctAnswer.charAt(0)) {console.log("CORRECT"); yayOrNay="CORRECT" }
-                else { console.log("INCORRECT ANSWER"); yayOrNay="WRONG ANSWER, 10 sec off the clock"; }
-
-
-
-
+                else { console.log("INCORRECT ANSWER"); yayOrNay="WRONG ANSWER, 10 sec off the clock"; 
+                       pbcounter = pbcounter -10;  // deduct 10sec if incorrect answer :(
+                       width = width+10;                       
+                }
 
             count = index+1;
             youSelected.innerHTML = " you selected from question " + count + " the ANSWER: " + theQuestions[index].possibleAnswer[2] + "  - this is the: " + yayOrNay         
