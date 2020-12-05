@@ -38,6 +38,7 @@ var theQuestions = [
 // var questions = document.getElementById('quizQuestions');
 var submittal = document.getElementById('submitYourAnswers');
 var results   = document.getElementById('yourScore');
+var youScore = 0;
 
 
 // function is called when start() is called by pressing start quiz button
@@ -54,6 +55,7 @@ function theQuiz(index){
         document.getElementById('count').innerText = "You have finished the quiz, refresh your browser to take the quiz again";
         document.getElementById("timer").innerHTML = pbcounter + " seconds remaining"; 
         outterDiv.style.width = 100 + '%'; // make barProgress complete - representing end of quiz
+        document.getElementById("yourScore").innerHTML = "Your score is: " + youScore + " out of 3 question correct"
         // clearInterval(count)
         return // exit the function - end of quiz
     }
@@ -93,7 +95,9 @@ function theQuiz(index){
               
             
             // for Questions 1. 2. & 3. - when selecting multiple choice letter a:
-            if (theQuestions[index].possibleAnswer[0].charAt(0) === theQuestions[index].correctAnswer.charAt(0)) {console.log("CORRECT"); yayOrNay="CORRECT" }
+            if (theQuestions[index].possibleAnswer[0].charAt(0) === theQuestions[index].correctAnswer.charAt(0)) {console.log("CORRECT"); yayOrNay="CORRECT" 
+                youScore++;
+            }
                 else { console.log("INCORRECT ANSWER"); yayOrNay="WRONG ANSWER, 10 sec off the clock"; 
                        pbcounter = pbcounter -10;  // deduct 10sec if incorrect answer :(
                        width = width+10;  
@@ -120,7 +124,9 @@ function theQuiz(index){
             
 
             // for Questions 1. 2. & 3. - when selecting multiple choice letter b:
-            if (theQuestions[index].possibleAnswer[1].charAt(0) === theQuestions[index].correctAnswer.charAt(0)) {console.log("CORRECT"); yayOrNay="CORRECT" }
+            if (theQuestions[index].possibleAnswer[1].charAt(0) === theQuestions[index].correctAnswer.charAt(0)) {console.log("CORRECT"); yayOrNay="CORRECT" 
+                youScore++;
+            }
                 else { console.log("INCORRECT ANSWER"); yayOrNay="WRONG ANSWER, 10 sec off the clock"; 
                        pbcounter = pbcounter -10;  // deduct 10sec if incorrect answer :(
                        width = width+10;
@@ -144,7 +150,9 @@ function theQuiz(index){
            
 
             // for Questions 1. 2. & 3. - when selecting multiple choice letter c:
-            if (theQuestions[index].possibleAnswer[2].charAt(0) === theQuestions[index].correctAnswer.charAt(0)) {console.log("CORRECT"); yayOrNay="CORRECT" }
+            if (theQuestions[index].possibleAnswer[2].charAt(0) === theQuestions[index].correctAnswer.charAt(0)) {console.log("CORRECT"); yayOrNay="CORRECT" 
+                youScore++;
+            }
                 else { console.log("INCORRECT ANSWER"); yayOrNay="WRONG ANSWER, 10 sec off the clock"; 
                        pbcounter = pbcounter -10;  // deduct 10sec if incorrect answer :(
                        width = width+10;                       
@@ -167,10 +175,6 @@ function theQuiz(index){
 // function that will generate a form element to enter the users information & calculated score
 function yourResults (){
 }
-
-
-
-
 // show the results when the timer ends or the user submits
 yourResults();
 
