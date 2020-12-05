@@ -39,72 +39,63 @@ var theQuestions = [
 var submittal = document.getElementById('submitYourAnswers');
 var results   = document.getElementById('yourScore');
 
-// var ques1 = document.createElement("div");
 
 
 function theQuiz(index){
-    var count= 0;
-    var temp= index;
-    console.log("the start index is: ",temp);
-    
-  
+    var count= 0; // used to treat correct index value rendered into the innerHTML since it only concatenates stings, and I need the index
     var quizQuestions = document.getElementById("quizQuestions");
     //creating span and div tag for the questions and answer options using the array index 
+    if (index > 2) {
+        index = 0;
+        console.log("current index value from theQuiz function return is: ", index);
+        return // exit the function - end of quiz
+    }
     var questionTag = '<span>'+ theQuestions[index].id + ". " + theQuestions[index].question +'</span>';
     var answersOptionsTag = '<div class="option" data-answer="a"><button>'+ theQuestions[index].possibleAnswer[0] +'</button></div>'
                           + '<div class="option" data-answer="b"><button>'+ theQuestions[index].possibleAnswer[1] +'</button></div>'
                           + '<div class="option" data-answer="c"><button>'+ theQuestions[index].possibleAnswer[2] +'</button></div>'
     quizQuestions.innerHTML = questionTag; //adding into quizQuestions div space
     answersList.innerHTML = answersOptionsTag; //add object to answersList id, adding into answerList div space   
-    
+    var youSelected = document.getElementById("yourAnswer");
 
 
         // get all the data-answer values from answersList obj. and store the arraylike node-list into selected variable/object/array
         var nodelistt = answersList.querySelectorAll(".data-answer");
         console.log("nodelistt: ", nodelistt); // this is empty
-        var selected = answersList.querySelectorAll(".option"); 
-        console.log("selected: ",selected) // this shows the nodeList, what I am looking for
-        // console.log("user selected answer: ",selected[1])
-        // console.log("user selected answer: ",selected[2])
-        
-        // selected[0].setAttribute("onclick", test());
-        // function test(){alert("you clicked answer a")}
-        // do this instead: my discovery
+        var selected = answersList.querySelectorAll(".option"); // nodeList
+        console.log("selected: ",selected) // this shows the nodeList, represents the answers for each of the questions
+        console.log("CURRENT INDEX IS: ", index);
 
+
+        // using the IDL (Inerface Definition Language) attributes here
         selected[0].onclick = function(){
-            console.log("i selected choice: a")
+            console.log("INDEX is: ", index, " you selected from question ", index+1,  " the ANSWER: ", theQuestions[index].possibleAnswer[0])
+            count = index+1;
+            youSelected.innerHTML = " you selected from question " + count + " the ANSWER: " + theQuestions[index].possibleAnswer[0] 
+            console.log()
             index++;
-            console.log(index);
+            console.log("index value from within possibleAnswer array: ", index);
             theQuiz(index);
         }
         selected[1].onclick = function(){
-            console.log("i selected choice: b")
+            console.log("INDEX is: ", index, " you selected from question ", index+1,  " the ANSWER: ", theQuestions[index].possibleAnswer[1])
+            count = index+1;
+            youSelected.innerHTML = " you selected from question " + count + " the ANSWER: " + theQuestions[index].possibleAnswer[1]
+            console.log()
             index++;
-            console.log(index);
+            console.log("index value from within possibleAnswer array: ", index);
             theQuiz(index);
         }
         selected[2].onclick = function(){
-            console.log("i selected choice: c")
+            console.log("INDEX is: ", index, " you selected from question ", index+1,  " the ANSWER: ", theQuestions[index].possibleAnswer[2])
+            count = index+1;
+            youSelected.innerHTML = " you selected from question " + count + " the ANSWER: " + theQuestions[index].possibleAnswer[2]           
+            console.log()
             index++;
-            console.log(index);
+            console.log("index value from within possibleAnswer array: ", index);
             theQuiz(index);
         }
 
-
-
-
-
-    // // test the questions / answers rendering into HTML
-    // function clickThruQuestions (){
-    //     // if (index = theQuestions.length) index= 0;  // maybe use this for alternate logic 
-    //     var questionTag = '<span>'+ theQuestions[index].id + ". " + theQuestions[index].question +'</span>';
-    //     var answersOptionsTag = '<div class="option" data-answer="a"><button>'+ theQuestions[index].possibleAnswer[0] +'</button></div>'
-    //                           + '<div class="option" data-answer="b"><button>'+ theQuestions[index].possibleAnswer[1] +'</button></div>'
-    //                           + '<div class="option" data-answer="c"><button>'+ theQuestions[index].possibleAnswer[2] +'</button></div>'
-    //     quizQuestions.innerHTML = questionTag; //adding into quizQuestions div space
-    //     answersList.innerHTML = answersOptionsTag; //adding into answerList div space 
-    //     index++;           
-    // }
 
 
 }
@@ -116,8 +107,6 @@ function yourResults (){
 }
 
 
-// start the quiz when user "Clicks to Start " button
-theQuiz();
 
 
 // show the results when the timer ends or the user submits
