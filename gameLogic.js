@@ -172,11 +172,11 @@ function theQuiz(index){
 
 
 
-// function that will generate a form element to enter the users information & calculated score
-function yourResults (){
+// function that will generate a form element to enter the users information & calculated score - to do last
+function yourResultsStored (){
 }
-// show the results when the timer ends or the user submits
-yourResults();
+// show stored highest scores
+yourResultsStored();
 
 
 

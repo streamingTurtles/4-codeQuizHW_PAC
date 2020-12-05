@@ -5,11 +5,12 @@
 ## User Story
 This application will run through a series of questions that you can answer within a time period set to 100 seconds.
 1. Questions are base on the javascript language
-2. There are 3 multiple questions
+2. There are 3 multiple choice questions
 3. Each question has 3 possible answers that you can click to select the answer
-4. Upon answering each question, you will be prompted if you answer is correct or incorrect
-5. Any Incorrectly answered questions will deduct time from the clock
+4. Upon answering each question, you will be prompted if you answer is correct or incorrect and the next question will appear
+5. Any Incorrectly answered questions will deduct 10 seconds off the clock time & is reflected accordinly in the graphical progress bar
 6. The Quiz is over when the time runs out or when all the questions have been answered
+7. When the Quiz is over, your score will be shown
 
 
 ## There are 4 files in this application:
@@ -24,14 +25,21 @@ This application will run through a series of questions that you can answer with
 ## Acceptance Criteria
 
 ## Using Vanilla Javascript, this application is coded from scratch to meet the following Acceptance Criteria:
-## NOTE: This application is NOT complete, and pseudo code has been added in the sections still in development
 1. WHEN I click the start button - THEN a timer starts and I am presented with a question. (CONFIRMED)
-2. WHEN I answer a question - THEN I am presented with another question. (in-progress)
-3. WHEN I answer a question incorrectly - THEN time is subtracted from the clock. (in-progress)
-4. WHEN all questions are answered or the timer reaches 0 - THEN the game is over (in-progress)
+2. WHEN I answer a question - THEN I am presented with another question. (in-progress) / (CONFIRMED, completed on 12/05)
+3. WHEN I answer a question incorrectly - THEN time is subtracted from the clock. (in-progress) / (CONFIRMED, completed on 12/05)
+4. WHEN all questions are answered or the timer reaches 0 - THEN the game is over and score is shown (in-progress) / (CONFIRMED, completed on 12/05)
 5. WHEN the game is over - THEN I can save my initials and scores. (in-progress)
 
+<br/>
+<br/>
 
+## Screen Shots of the Application:
+![Code Quiz screenShots](./ApplicationScreenShots/pic-1_start-quiz.png)
+![Code Quiz screenShots](./ApplicationScreenShots/pic-2_quiz-ques-1.png)
+![Code Quiz screenShots](./ApplicationScreenShots/pic-3_quiz-ques-1-answered.png)
+![Code Quiz screenShots](./ApplicationScreenShots/pic-4_quiz-ques-2-answered.png)
+![Code Quiz screenShots](./ApplicationScreenShots/pic-5_quiz-ques-3-answered-endOfQuiz-scoreShown.png)
 
 
 <br/>
@@ -39,7 +47,7 @@ This application will run through a series of questions that you can answer with
 
 
 ## NOTES:
-* > I left in comments where necessary to further continue building out this code to ultimately complete all the criteria.
+* > This code is heavly commited - much complexity in such a simple game
 * > Pseudo code is in place where code logic still needs to be completed 
 <br/>
 
