@@ -50,6 +50,9 @@
 <div id="submitYourAnswers">Submit your Quiz</div>
 <div id="yourScore">Your Score</div>
 
+<!-- test the questions / answers rendering into HTML -->
+<!-- <button onclick="theQuiz()">click for next question</button> -->
+
 
 <script>
 var count;
@@ -58,7 +61,7 @@ var width = 0;
 var pbcounter = 100;
 
 function start(){
-  theQuiz();
+  theQuiz(0); // show the 1st question from theQuestion array of objects 
 
   count = setInterval(timer,1000)  
 }

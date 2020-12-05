@@ -33,10 +33,6 @@ var theQuestions = [
     }
 ];
 
-
-
-
-
 // create the variables to store each elements reference
 
 // var questions = document.getElementById('quizQuestions');
@@ -46,17 +42,70 @@ var results   = document.getElementById('yourScore');
 // var ques1 = document.createElement("div");
 
 
-function theQuiz(){
-    var count =0;
-    var index=0;  // temp testing
+function theQuiz(index){
+    var count= 0;
+    var temp= index;
+    console.log("the start index is: ",temp);
+    
+  
     var quizQuestions = document.getElementById("quizQuestions");
     //creating span and div tag for the questions and answer options using the array index 
     var questionTag = '<span>'+ theQuestions[index].id + ". " + theQuestions[index].question +'</span>';
-    var answersOptionsTag = '<div class="option"><button>'+ theQuestions[index].possibleAnswer[0] +'</button></div>'
-                          + '<div class="option"><button>'+ theQuestions[index].possibleAnswer[1] +'</button></div>'
-                          + '<div class="option"><button>'+ theQuestions[index].possibleAnswer[2] +'</button></div>'
-    quizQuestions.innerHTML = questionTag; //adding a new span tag inside the questionTag
-    answersList.innerHTML = answersOptionsTag; //adding a new div tag inside answersOptionsTag    
+    var answersOptionsTag = '<div class="option" data-answer="a"><button>'+ theQuestions[index].possibleAnswer[0] +'</button></div>'
+                          + '<div class="option" data-answer="b"><button>'+ theQuestions[index].possibleAnswer[1] +'</button></div>'
+                          + '<div class="option" data-answer="c"><button>'+ theQuestions[index].possibleAnswer[2] +'</button></div>'
+    quizQuestions.innerHTML = questionTag; //adding into quizQuestions div space
+    answersList.innerHTML = answersOptionsTag; //add object to answersList id, adding into answerList div space   
+    
+
+
+        // get all the data-answer values from answersList obj. and store the arraylike node-list into selected variable/object/array
+        var nodelistt = answersList.querySelectorAll(".data-answer");
+        console.log("nodelistt: ", nodelistt); // this is empty
+        var selected = answersList.querySelectorAll(".option"); 
+        console.log("selected: ",selected) // this shows the nodeList, what I am looking for
+        // console.log("user selected answer: ",selected[1])
+        // console.log("user selected answer: ",selected[2])
+        
+        // selected[0].setAttribute("onclick", test());
+        // function test(){alert("you clicked answer a")}
+        // do this instead: my discovery
+
+        selected[0].onclick = function(){
+            console.log("i selected choice: a")
+            index++;
+            console.log(index);
+            theQuiz(index);
+        }
+        selected[1].onclick = function(){
+            console.log("i selected choice: b")
+            index++;
+            console.log(index);
+            theQuiz(index);
+        }
+        selected[2].onclick = function(){
+            console.log("i selected choice: c")
+            index++;
+            console.log(index);
+            theQuiz(index);
+        }
+
+
+
+
+
+    // // test the questions / answers rendering into HTML
+    // function clickThruQuestions (){
+    //     // if (index = theQuestions.length) index= 0;  // maybe use this for alternate logic 
+    //     var questionTag = '<span>'+ theQuestions[index].id + ". " + theQuestions[index].question +'</span>';
+    //     var answersOptionsTag = '<div class="option" data-answer="a"><button>'+ theQuestions[index].possibleAnswer[0] +'</button></div>'
+    //                           + '<div class="option" data-answer="b"><button>'+ theQuestions[index].possibleAnswer[1] +'</button></div>'
+    //                           + '<div class="option" data-answer="c"><button>'+ theQuestions[index].possibleAnswer[2] +'</button></div>'
+    //     quizQuestions.innerHTML = questionTag; //adding into quizQuestions div space
+    //     answersList.innerHTML = answersOptionsTag; //adding into answerList div space 
+    //     index++;           
+    // }
+
 
 }
 
