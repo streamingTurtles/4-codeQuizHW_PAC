@@ -26,10 +26,12 @@ This application will run through a series of questions that you can answer with
 
 ## Using Vanilla Javascript, this application is coded from scratch to meet the following Acceptance Criteria:
 1. WHEN I click the start button - THEN a timer starts and I am presented with a question. (CONFIRMED)
-2. WHEN I answer a question - THEN I am presented with another question. (in-progress) / (CONFIRMED, completed on 12/05)
-3. WHEN I answer a question incorrectly - THEN time is subtracted from the clock. (in-progress) / (CONFIRMED, completed on 12/05)
-4. WHEN all questions are answered or the timer reaches 0 - THEN the game is over and score is shown (in-progress) / (CONFIRMED, completed on 12/05)
-5. WHEN the game is over - THEN I can save my initials and scores. (in-progress)
+2. WHEN I answer a question - THEN I am presented with another question. (CONFIRMED)
+3. WHEN I answer a question incorrectly - THEN time (10 seconds) is subtracted from the clock. (CONFIRMED)
+4. WHEN all questions are answered or the timer reaches 0 - THEN the game is over and score is shown (CONFIRMED)
+5. WHEN the game is over - THEN I can save my initials and scores. (CONFIRMED)
+6. WHEN I enter information into the input form, my information is saved within the local browser cache (CONFIRMED)
+7. WHEN I refresh the browser tab, the stored scores information remains - persisting in local storage (CONFIRMED)
 
 <br/>
 <br/>

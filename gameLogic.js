@@ -56,28 +56,29 @@ if (localStorage.getItem('items')) {
 } else {
   scoresArray = []
 }
-
+// use JSON stringify to store the day, and convert back to present using JSON parse
 localStorage.setItem('items', JSON.stringify(scoresArray));
 var data = JSON.parse(localStorage.getItem('items'));
-
+// create the li tags to show our input 
 var createLiTags = function(text){
   var li = document.createElement('li');
   li.textContent = text;
   ul.appendChild(li);
 }
-
+// prevent from sending to a server - stop the default element behavior
 form.addEventListener('submit', function (e) {
   e.preventDefault();
-
+  // set our local storage
   scoresArray.push(input.value);
   localStorage.setItem('items', JSON.stringify(scoresArray));
   createLiTags(input.value);
   input.value = "";
 });
-
+// loops through all current storage, and displays it in browser in li tags via creaeLiTags function
 data.forEach(item => {
   createLiTags(item);
 });
+
 
 
 
