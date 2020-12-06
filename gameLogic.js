@@ -1,4 +1,92 @@
 
+// timer and progress bar section of code
+var count;
+var outterDiv = document.getElementById("barProgress");   
+var width = 0;
+var pbcounter = 100;
+
+function start(){
+  theQuiz(0); // pass in a 0 to show the 1st question from theQuestion array  
+
+  count = setInterval(timer,1000)  
+}
+function timer(){
+  pbcounter = pbcounter-1; 
+  document.getElementById('count').innerText = "You have " + pbcounter + " seconds to take quiz";
+  document.getElementById("timer").innerHTML = pbcounter + " seconds remaining";
+//   console.log("progress bar is: " + width + " pbcounter is: " + pbcounter + "count is: " + count);
+  if (width == 99) {
+    //   console.log("width is at: " + width + '%');
+      outterDiv.style.width = 100 + '%'; // needed to "fudge" graphically to complete the progress bar
+      width = 0;
+      pbcounter = 100;
+      document.getElementById('count').innerText = "Click above to start the Quiz again";
+      clearInterval(count);
+    } else {
+      width++;  
+      outterDiv.style.width = width + '%'; // increment the width % of the div #barProress
+    } 
+}
+
+
+
+
+
+// clears the current setInterval timer that's running when all questions have been answered
+// various settings are reInitialized where this function is called
+function stopp(){  
+  clearInterval(count)   
+}
+
+
+
+
+
+// Local Storage Section 
+// Section of code will create <li><</li> tags for entered text to capture Initials and Score
+// Items are stored until cleared using localSorage.clear() function
+var form = document.querySelector('form');
+var ul = document.querySelector('ul');
+var button = document.querySelector('button');
+var input = document.getElementById('item');
+// create array for scores to be stored
+var scoresArray;
+if (localStorage.getItem('items')) {
+  scoresArray = JSON.parse(localStorage.getItem('items'))
+} else {
+  scoresArray = []
+}
+
+localStorage.setItem('items', JSON.stringify(scoresArray));
+var data = JSON.parse(localStorage.getItem('items'));
+
+var createLiTags = function(text){
+  var li = document.createElement('li');
+  li.textContent = text;
+  ul.appendChild(li);
+}
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  scoresArray.push(input.value);
+  localStorage.setItem('items', JSON.stringify(scoresArray));
+  createLiTags(input.value);
+  input.value = "";
+});
+
+data.forEach(item => {
+  createLiTags(item);
+});
+
+
+
+
+
+
+
+
+
 // array to hold key, values for questions.
 var theQuestions = [
     {   
@@ -33,9 +121,10 @@ var theQuestions = [
     }
 ];
 
-// create the variables to store each elements reference
 
-// var questions = document.getElementById('quizQuestions');
+
+
+// create the variables to store each elements reference
 var submittal = document.getElementById('submitYourAnswers');
 var results   = document.getElementById('yourScore');
 var youScore = 0;
@@ -169,14 +258,6 @@ function theQuiz(index){
 
 
 }
-
-
-
-// function that will generate a form element to enter the users information & calculated score - to do last
-function yourResultsStored (){
-}
-// show stored highest scores
-yourResultsStored();
 
 
 

@@ -14,14 +14,15 @@
 
 
 </head>
-<body onLoad="Javascript:checkRefresh()">
-    <!-- using form element to detect a page refresh  -->
+<!-- no longer used - kept in for future debugging purposes when further building out this app -->
+<!-- using form element to detect a page refresh  -->
+<!-- <body onLoad="Javascript:checkRefresh()">    
     <form name="refreshForm">
         <input type="hidden" name="visited" value="" />
-        </form>
+        </form> -->
 
 
-
+<body>
 
     <h1 style="text-align: center">Code Quiz Game</h1>
     
@@ -36,6 +37,7 @@
         <hr>
     </div>
 
+<!-- progress bar     -->
 <div id="barFullLength">
   <div id="barProgress"></div>
 </div>
@@ -45,65 +47,27 @@
 <br>
 <div id='count'>"You have 100 seconds to take this CODE QUIZ"</div>
 <hr>
-
 <div id="quizQuestions">---</div>
 <hr>
 <div id="answersList">---</div>
 <hr>
 <div id="yourAnswer">---</div>
-<!-- <div id="submitYourAnswers">Submit your Quiz</div> -->
 <hr>
 <div id="yourScore">Your Score</div>
+<hr>
+<!-- Input form used to enter user score info. and to persist in browser via local storage-->
+<div class="small-container">
+  <h1>Enter Your Initials & Scores</h1>
+  <form>
+    <input id="item" type="text" placeholder="New">
+  </form>
+  <h2>Score List:</h2>
+  <ul></ul>
+  
+</div>
 
-<!-- test the questions / answers rendering into HTML -->
-<!-- <button onclick="theQuiz()">click for next question</button> -->
-
-
-<script>
-var count;
-var outterDiv = document.getElementById("barProgress");   
-var width = 0;
-var pbcounter = 100;
-
-function start(){
-  theQuiz(0); // show the 1st question from theQuestion array of objects 
-
-  count = setInterval(timer,1000)  
-}
-function timer(){
-  pbcounter = pbcounter-1; 
-  document.getElementById('count').innerText = "You have " + pbcounter + " seconds to take quiz";
-  document.getElementById("timer").innerHTML = pbcounter + " seconds remaining";
-//   console.log("progress bar is: " + width + " pbcounter is: " + pbcounter + "count is: " + count);
-  if (width == 99) {
-    //   console.log("width is at: " + width + '%');
-      outterDiv.style.width = 100 + '%'; // needed to "fudge" graphically to complete the progress bar
-      width = 0;
-      pbcounter = 100;
-      document.getElementById('count').innerText = "Click above to start the Quiz again";
-      clearInterval(count);
-    } else {
-      width++;  
-      outterDiv.style.width = width + '%'; // increment the width % of the div #barProress
-    } 
-}
-
-// function used during testing the timer portion of the app
-// clears the current setInterval timer that's running
-function stopp(){  
-  clearInterval(count)   
-}
-
-</script>
-
-
-
-
-
-
-
+<!-- application script - all logic in one file  -->
 <script src="gameLogic.js"></script>
-<!-- <script>src="data.js"</script> -->
 
 </body>
 </html>

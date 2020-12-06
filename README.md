@@ -48,7 +48,6 @@ This application will run through a series of questions that you can answer with
 
 ## NOTES:
 * > This code is heavly commited - much complexity in such a simple game
-* > Pseudo code is in place where code logic still needs to be completed 
 <br/>
 
 
