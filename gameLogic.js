@@ -49,35 +49,68 @@ var form = document.querySelector('form');
 var ul = document.querySelector('ul');
 var button = document.querySelector('button');
 var input = document.getElementById('item');
-// create array for scores to be stored
+
+
+// 1. create array for scores to be stored if there is something in localStorage
+// this is checked 1st as we are saving data, and when game reStarts, we want to render the stored data - that which would have been saved into localStorage via setItem()
 var scoresArray;
 if (localStorage.getItem('items')) {
   scoresArray = JSON.parse(localStorage.getItem('items'))
+  console.log("scoresArray in IF condition is: ", scoresArray);
 } else {
-  scoresArray = []
+  scoresArray = []  // if nothing is in the localStorage, just at least create the array object
+  console.log("scoresArray in else is: ", scoresArray);
 }
-// use JSON stringify to store the day, and convert back to present using JSON parse
+
+
+// 2. add items to localStorage found in 'items' - also add youScore after all questions have been answered in theQuiz() function
 localStorage.setItem('items', JSON.stringify(scoresArray));
+// use JSON stringify to getItem to render into <li> tags - need to JSON.parse() back into object syntax
 var data = JSON.parse(localStorage.getItem('items'));
 // create the li tags to show our input 
 var createLiTags = function(text){
+  if(text){
   var li = document.createElement('li');
   li.textContent = text;
   ul.appendChild(li);
+  }
 }
+
+//  *** added new function for reGRade on 12/15/2020, prevents an empty entry *** 
+function validateForm() {
+  var x = document.forms["myForm"]["fname"].value;
+  if (x == "" || x == null) {
+    alert("Please enter your name or initials \n or refresh the page to take the quiz again");
+    return false;
+  } else {
+    createLiTags(input.value + " scored: " + getData[getDataTRACK] + " out of the 3 questions");    // *** added for reGRade on 12/15/2020 *** 
+  }
+}
+
+
 // prevent from sending to a server - stop the default element behavior
 form.addEventListener('submit', function (e) {
   e.preventDefault();
   // set our local storage
-  scoresArray.push(input.value);
+  scoresArray.push(input.value + " scored: " + getData[getDataTRACK] + " out of the 3 questions"); // *** added for reGRade on 12/15/2020 *** 
   localStorage.setItem('items', JSON.stringify(scoresArray));
-  createLiTags(input.value);
+  // *** repositioned into new function above for reGRade on 12/15/2020 ***
+  // createLiTags(input.value + " scored: " + getData[getDataTRACK] + " out of the 3 questions");    // *** added for reGRade on 12/15/2020 *** 
   input.value = "";
 });
+
+
 // loops through all current storage, and displays it in browser in li tags via creaeLiTags function
 data.forEach(item => {
   createLiTags(item);
 });
+// data.forEach(function (thing, index){   // "item" renamed to "thing" is just the name you want to give the contents of each element in the array
+// 	createLiTags(thing);
+// 	console.log("index of array is: ", index); // is each index of the array
+// 	console.log("item in array is:", item);    // is what is in the data array, the contents of each index
+// });
+
+
 
 
 
@@ -125,29 +158,63 @@ var theQuestions = [
 
 
 
+
 // create the variables to store each elements reference
 var submittal = document.getElementById('submitYourAnswers');
 var results   = document.getElementById('yourScore');
-var youScore = 0;
+console.log("reset youScore to: ", youScore);
+var youScore =0;
+var scoreDataArray = [];
+var data2;
+var dataIn;
+var getData=[];
+var finalScore=0;
+var getDataTRACK;  // *** added for reGRade on 12/15/2020, see line 188 where its incremented to track location in the array ***
 
 
 // function is called when start() is called by pressing start quiz button
 function theQuiz(index){
     var count= 0; // used to treat correct index value rendered into the innerHTML since it concatenates strings only, and I need the index value, number
-    var yayOrNay = "";  // the variable the stores an incorrect or correct answer for each of the questions
+    var yayOrNay = "";  // the variable that stores an incorrect or correct answer for each of the questions
     var quizQuestions = document.getElementById("quizQuestions");
     // condition to restore back to start after answered the qustions or end of quiz case
-    if (index > 2) { // when you finished answering the question do these things
-        index = 0;  // set back where you are in the object array to the beginning
-        console.log("index value set back to the beginning - to: ", index);
-        stopp();
-        pbcounter = 0;  // push to 0 seconds
-        document.getElementById('count').innerText = "You have finished the quiz, refresh your browser to take the quiz again";
-        document.getElementById("timer").innerHTML = pbcounter + " seconds remaining"; 
-        outterDiv.style.width = 100 + '%'; // make barProgress complete - representing end of quiz
-        document.getElementById("yourScore").innerHTML = "Your score is: " + youScore + " out of 3 question correct"
-        // clearInterval(count)
-        return // exit the function - end of quiz
+    if (index > theQuestions.length -1) { // *** added for reGRade on 12/15/2020 on this line *** - eliminated the < 2 "keeping with good coding pracice for NO MAGIC NUBERS" and replaced with theQuestion.length -1 ***
+              index = 0;  // set back where you are in the object array to the beginning
+              console.log("index value set back to the beginning -> to: ", index);
+              stopp();  // runs clearInterval() - clearing the interval set by setinterval() - JS internal functions
+              pbcounter = 0;  // push to 0 seconds
+              document.getElementById('count').innerText = "You have finished the quiz, refresh your browser to take the quiz again";
+              document.getElementById("timer").innerHTML = pbcounter + " seconds remaining"; 
+              outterDiv.style.width = 100 + '%'; // make barProgress complete - representing end of quiz
+              document.getElementById("yourScore").innerHTML = "Your score is: " + youScore + " out of 3 question correct"
+              // *************************** added ***********************************
+              // *** added for reGRade on 12/15/2020, lines 174 to 198 ***
+              // *************************** added ***********************************
+              console.log("*********************************************************")
+              // *** DON'T USE ' ' FOR THE ARGUMENT AS PARAMETER HERE, you are capturing the object or whatever the datatype ***         
+              // localStorage.setItem('youScore', JSON.stringify(youScore)); 
+              // localStorage.setItem('finalScore', finalScore);  // need to name 'youScore' in 1st parameter, using other name won't work???
+              // getData = localStorage.getItem('finalScore'); // you need ' ' since your getting the localStorage which is stored as a string
+              getData = localStorage.getItem('youScore'); // you need ' ' since your getting the localStorage which is stored as a string
+              console.log("youScore is: ", youScore +  "   finalScore is: " , finalScore + "   getData array is: ", getData);
+              getData = getData ? getData.split(','): [];
+              getData.push(youScore);
+              getDataTRACK = getData.length-1; // is the index of the last item pushed onto the array - to use to get that score to post with quiz takers name
+              console.log("track position in getData array to show score in localStorage on line # 81 & 83 ", getDataTRACK);
+              // getData.push('youScore');  // will add in what's between the ' ', I want the value
+              console.log("getData is: ", getData);
+              // localStorage.setItem('youScore', youScore);  // need to name 'youScore' in 1st parameter, using other name won't work - why - just REMEMBER key = value, either for var x = something
+              // localStorage.setItem( youScore , getData.toString());  // testing, doesn't work 
+              // localStorage.setItem('youScore', JSON.stringify(getData)); // testing, doesn't work
+              // localStorage.setItem('youScore', getData.toString());  // testing, doesn't work
+              localStorage.setItem('youScore',getData);
+              console.log("getData is: ", getData); // QUESTION: why is last one in the array a value and not a string, but as one is added it becomes a string ????????
+              getData.forEach(function(number){  // just using a forEach to test that I have the scores in an array show in console
+              console.log(number);
+              });
+              console.log("*********************************************************")
+              // *************************** added ***********************************
+              // *************************** added ***********************************       
     }
     //creating span and div tag for the questions and answer options using the array index    
     var questionTag = '<span>'+ theQuestions[index].id + ". " + theQuestions[index].question +'</span>';
@@ -187,6 +254,7 @@ function theQuiz(index){
             // for Questions 1. 2. & 3. - when selecting multiple choice letter a:
             if (theQuestions[index].possibleAnswer[0].charAt(0) === theQuestions[index].correctAnswer.charAt(0)) {console.log("CORRECT"); yayOrNay="CORRECT" 
                 youScore++;
+                finalScore = youScore;
             }
                 else { console.log("INCORRECT ANSWER"); yayOrNay="WRONG ANSWER, 10 sec off the clock"; 
                        pbcounter = pbcounter -10;  // deduct 10sec if incorrect answer :(
@@ -216,6 +284,7 @@ function theQuiz(index){
             // for Questions 1. 2. & 3. - when selecting multiple choice letter b:
             if (theQuestions[index].possibleAnswer[1].charAt(0) === theQuestions[index].correctAnswer.charAt(0)) {console.log("CORRECT"); yayOrNay="CORRECT" 
                 youScore++;
+                finalScore = youScore;
             }
                 else { console.log("INCORRECT ANSWER"); yayOrNay="WRONG ANSWER, 10 sec off the clock"; 
                        pbcounter = pbcounter -10;  // deduct 10sec if incorrect answer :(
@@ -242,6 +311,7 @@ function theQuiz(index){
             // for Questions 1. 2. & 3. - when selecting multiple choice letter c:
             if (theQuestions[index].possibleAnswer[2].charAt(0) === theQuestions[index].correctAnswer.charAt(0)) {console.log("CORRECT"); yayOrNay="CORRECT" 
                 youScore++;
+                finalScore = youScore;
             }
                 else { console.log("INCORRECT ANSWER"); yayOrNay="WRONG ANSWER, 10 sec off the clock"; 
                        pbcounter = pbcounter -10;  // deduct 10sec if incorrect answer :(
@@ -253,11 +323,8 @@ function theQuiz(index){
             console.log()
             index++;
             console.log("index value from within possibleAnswer array: ", index);
-            theQuiz(index);
+            theQuiz(index);            
         }
-
-
-
 }
 
 
@@ -270,7 +337,7 @@ function checkRefresh()
 	if( document.refreshForm.visited.value == "" )
 	{
 		// This is a fresh page load
-		document.refreshForm.visited.value = "1";		
+		document.refreshForm.visited.value = "1";	
         
         // fresh page loads, clear things
         quizQuestions.innerHTML = ''; // reset to empty string

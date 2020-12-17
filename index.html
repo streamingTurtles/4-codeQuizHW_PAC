@@ -58,9 +58,21 @@
 <!-- Input form used to enter user score info. and to persist in browser via local storage-->
 <div class="small-container">
   <h1>Enter Your Initials & Scores</h1>
-  <form>
+
+  <!-- <form>
     <input id="item" type="text" placeholder="enter your score">
+  </form> -->
+
+  <!-- *** added below for reGRade on 12/15/2020 ***  -->
+  <!-- *** updated with new attributes to hook in JS to prevent empty submits ***  -->
+  <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post" required>
+    Name: <input id="item" type="text" name="fname">
+    <input type="submit" value="Submit">
   </form>
+
+
+
+
   <h2>Score List:</h2>
   <ul></ul>
   
