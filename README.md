@@ -32,6 +32,10 @@ This application will run through a series of questions that you can answer with
 5. WHEN the game is over - THEN I can save my initials and scores. (CONFIRMED)
 6. WHEN I enter information into the input form, my information is saved within the local browser cache (CONFIRMED)
 7. WHEN I refresh the browser tab, the stored scores information remains - persisting in local storage (CONFIRMED)
+8. When submitting your name, your score will be displayed next to your name (CONFIRMED)
+9. Blank entry in the form submittal entry dialogue box, is prevented by alerting the user. (CONFIRMED)
+10. Your name and score are stored in localStorage and will persist(CONFIMED)
+
 
 <br/>
 <br/>
